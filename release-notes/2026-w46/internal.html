@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Under the Hood W46</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>
+:root{--bg:#f7f5fb;--fg:#231b33;--muted:#6b6180;--line:#dcd6ea;--card:#ffffff;--accent:#5b2d8e;--accent-soft:#eee7f7;--ok:#1f7a4d;--ok-soft:#e3f3ea;--wait:#9a5a00;--wait-soft:#fff1dc;--code:#f0ecf7;
+--display:"Fraunces",Georgia,serif;--body:"Source Sans 3",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17121f;--fg:#ece7f5;--muted:#a79dbb;--line:#352c47;--card:#211a2d;--accent:#c9a8f0;--accent-soft:#2d2240;--ok:#7fd3a3;--ok-soft:#1d3328;--wait:#f0b35c;--wait-soft:#3a2a12;--code:#2a2238;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17121f;--fg:#ece7f5;--muted:#a79dbb;--line:#352c47;--card:#211a2d;--accent:#c9a8f0;--accent-soft:#2d2240;--ok:#7fd3a3;--ok-soft:#1d3328;--wait:#f0b35c;--wait-soft:#3a2a12;--code:#2a2238;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.12;margin:6px 0 8px;text-wrap:balance}
+p.lead{color:var(--muted);margin:0 0 20px;max-width:62ch}
+nav.top{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+nav.top a{font-size:14px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;background:var(--card)}
+nav.top a[aria-current]{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.top a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 28px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0;text-decoration:none;color:inherit;display:block}
+.tile b{display:block;font-family:var(--display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:var(--muted)}
+a.tile:hover{border-color:var(--accent)}
+h2{font-family:var(--display);font-size:26px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .n{font-family:var(--mono);font-size:14px;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+p.sub{color:var(--muted);margin:0 0 18px;max-width:65ch}
+h3{font-size:15px;font-weight:700;margin:24px 0 8px;display:flex;align-items:center;gap:8px}
+h3 .cnt{font-family:var(--mono);font-size:12px;color:var(--muted)}
+ul.items{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.items li{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;min-width:0}
+ul.items.bugs li{border-left-color:var(--ok)}
+li .t{font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+li p{margin:4px 0 8px;max-width:70ch}
+li .m{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+code{font-family:var(--mono);font-size:12px;background:var(--code);padding:1px 6px;border-radius:4px}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px}
+.tag.wait{background:var(--wait-soft);color:var(--wait)}
+.tag.live{background:var(--ok-soft);color:var(--ok)}
+.batches{display:grid;gap:6px;font-family:var(--mono);font-size:13px;margin:0 0 10px}
+.batches div{display:flex;gap:12px;flex-wrap:wrap}
+.batches .st{color:var(--ok)} .batches .st.w{color:var(--wait)}
+ul.plain{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+ul.plain li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+section{margin:0 0 36px}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px;max-width:70ch}
+.tldr{background:var(--accent-soft);border-radius:10px;padding:14px 18px;margin:0 0 24px}
+.tldr h2{font-size:18px;margin:0 0 6px}
+.tldr ul{margin:0;padding-left:18px}
+</style></head><body><div class="wrap"><div class="kicker">Purple Ruler · Release notes · 9–15 Nov 2026</div><h1>Under the hood</h1><p class="lead">124 merged changes users never see: guards, contracts, mirrors, specs and anchors. Only the ones worth a sentence.</p><nav class="top" aria-label="Pages"><a href="index.html">Overview</a><a href="features.html">New features</a><a href="bugs.html">Bug fixes</a><a href="internal.html" aria-current="page">Under the hood</a></nav><section><h2>Highlights<span class="n">7</span></h2><ul class="plain"><li>LD-2 (lesson creation moved off AnyCross): building blocks for creating, changing and cancelling lessons directly (velo#2220–#2265), change time / change teacher / cancel sync (velo#2366, live); fixed teacher join link groundwork (velo#2368, live since batch 208 on 16 Nov). The switch is still off, so nothing changes for users yet.</li><li>CONFIG-IN-CMS: more settings and secrets moved into the SysConfig table, with a reconciliation probe (velo#2285, #2292, #2201, #2215) and the LARK-DIRECT-1 shadow switch removed (velo#2339).</li><li>Credit usage and billing engines: monthly credit usage rows and daily run alerts (velo#2235, #2232), commission table (velo#2238), pending-item codes (velo#2269, #2276), weekly-order step moved last with a heartbeat and a cap of 100 new to-dos (velo#2340), Final Total Hours as the quote-change denominator (velo#2253).</li><li>Teacher / case-worker access: write path for pupil assignment (velo#2209, #2334), trust-side read limit (velo#2205), coverage guards.</li><li>School home snapshot work for large schools: staged timing, budget codes, trimmed first screen (velo#2282–#2296).</li><li>Invite-stalled alert for family timetable invitations added (velo#2345) and then withdrawn before release (velo#2350).</li><li>CI and guards: pages viewport matrix 11 to 12 shards (pages#2053), enrolment page CSV import lazy-loaded (pages#2031), enrolment subject list parity guard (pages#2049), safe-publish warm-up of the enrolment page (velo#2275), contract-stamp renewals, uiVersion syncs (velo#2257, #2283, #2301, #2313, #2369) and automatic Velo mirror refreshes.</li></ul></section><footer>Source: PRs merged 9–15 Nov 2026 in the Velo back-end and Custom Element front-end repos, plus release batches 181–208. Back-end changes go live with a release batch; dashboard pages go live when merged. Descriptions were written from PR titles and bodies; the PR is the authority where wording differs. Pages for the school, trust, parent, student and enrolment dashboards reach users through the back end’s bundled copy, so they count as live once a batch containing that copy is released.</footer></div></body></html>
