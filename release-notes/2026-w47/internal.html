@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Under the Hood W47</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>
+:root{--bg:#f7f5fb;--fg:#231b33;--muted:#6b6180;--line:#dcd6ea;--card:#ffffff;--accent:#5b2d8e;--accent-soft:#eee7f7;--ok:#1f7a4d;--ok-soft:#e3f3ea;--wait:#9a5a00;--wait-soft:#fff1dc;--code:#f0ecf7;
+--display:"Fraunces",Georgia,serif;--body:"Source Sans 3",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17121f;--fg:#ece7f5;--muted:#a79dbb;--line:#352c47;--card:#211a2d;--accent:#c9a8f0;--accent-soft:#2d2240;--ok:#7fd3a3;--ok-soft:#1d3328;--wait:#f0b35c;--wait-soft:#3a2a12;--code:#2a2238;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17121f;--fg:#ece7f5;--muted:#a79dbb;--line:#352c47;--card:#211a2d;--accent:#c9a8f0;--accent-soft:#2d2240;--ok:#7fd3a3;--ok-soft:#1d3328;--wait:#f0b35c;--wait-soft:#3a2a12;--code:#2a2238;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.12;margin:6px 0 8px;text-wrap:balance}
+p.lead{color:var(--muted);margin:0 0 20px;max-width:62ch}
+nav.top{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+nav.top a{font-size:14px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;background:var(--card)}
+nav.top a[aria-current]{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.top a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 28px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0;text-decoration:none;color:inherit;display:block}
+.tile b{display:block;font-family:var(--display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:var(--muted)}
+a.tile:hover{border-color:var(--accent)}
+h2{font-family:var(--display);font-size:26px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .n{font-family:var(--mono);font-size:14px;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+p.sub{color:var(--muted);margin:0 0 18px;max-width:65ch}
+h3{font-size:15px;font-weight:700;margin:24px 0 8px;display:flex;align-items:center;gap:8px}
+h3 .cnt{font-family:var(--mono);font-size:12px;color:var(--muted)}
+ul.items{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.items li{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;min-width:0}
+ul.items.bugs li{border-left-color:var(--ok)}
+li .t{font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+li p{margin:4px 0 8px;max-width:70ch}
+li .m{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+code{font-family:var(--mono);font-size:12px;background:var(--code);padding:1px 6px;border-radius:4px}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px}
+.tag.wait{background:var(--wait-soft);color:var(--wait)}
+.tag.live{background:var(--ok-soft);color:var(--ok)}
+.batches{display:grid;gap:6px;font-family:var(--mono);font-size:13px;margin:0 0 10px}
+.batches div{display:flex;gap:12px;flex-wrap:wrap}
+.batches .st{color:var(--ok)} .batches .st.w{color:var(--wait)}
+ul.plain{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+ul.plain li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+section{margin:0 0 36px}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px;max-width:70ch}
+.tldr{background:var(--accent-soft);border-radius:10px;padding:14px 18px;margin:0 0 24px}
+.tldr h2{font-size:18px;margin:0 0 6px}
+.tldr ul{margin:0;padding-left:18px}
+</style></head><body><div class="wrap"><div class="kicker">Purple Ruler · Release notes · 16–22 Nov 2026</div><h1>Under the hood</h1><p class="lead">276 merged changes users never see: guards, contracts, mirrors, specs and anchors. Only the ones worth a sentence.</p><nav class="top" aria-label="Pages"><a href="index.html">Overview</a><a href="features.html">New features</a><a href="bugs.html">Bug fixes</a><a href="internal.html" aria-current="page">Under the hood</a></nav><section><h2>Highlights<span class="n">9</span></h2><ul class="plain"><li>Daily billing run (NO.8107 / 8118): split into segments with their own jobs and time budgets, a third segment for commission, pending items and the account tail (velo#2554, #2581, #2595), a second Lark segment (velo#2535), a school-by-school batch mode that runs in shadow only (velo#2569, #2590), heartbeats and memory logs to find where it stalls (velo#2512, #2566, #2586), and an internal run-now entry (velo#2532, #2582).</li><li>LD-2 (lesson creation off AnyCross): hidden stock-runner page with probe mode and DONE / PARTIAL reporting, fixed-link backfill, an ops fallback join link and a warning for pupils with no own link (velo#2433, #2444, #2456, #2460, #2474, #2477, #2478, #2516). The switch is still off for users.</li><li>Parent identity in one place: three copies of “find the parent by user ID” merged into one execution point, with a baseline test and a never-throw trace layer (velo#2442, #2445, #2455, #2420, #2424, #2434, #2458).</li><li>uiVersion sync made automatic: light-weight check for one-line syncs, auto-opened sync PRs and a double read before publish (velo#2431, #2439, #2446); 10 PRs this week carry uiVersion in the title.</li><li>Retired pages and methods: the old /spv2 student page, /st-add-student, the extend trail pilot page and dead enrolment code removed; a retired-method scan added to CI in both repos (velo#2370, #2411, #2413, #2545, #2519, #2371, pages#2169).</li><li>Publish size budget (NO.8037): a total-size check in pre-publish, the mirror page limit raised to 1.5M with oversize pages skipped one by one, comment stripping on the school-home bundle, and on-demand fonts for the enrolment page (velo#2561, #2570, #2557, pages#2201, #2206, #2230).</li><li>CI: lighter runners for CI checks (velo#2432, #2448, #2437, pages#2233, #2237), pages viewport matrix grown from 14 to 18 shards (pages#2146, #2194) and a rule that rebuilds shard baselines after a spec is split (pages#2207), stale-round exits (velo#2453, pages#2095, #2213).</li><li>Tests made faster and steadier: 36 pages test PRs this week, mostly replacing fixed real-time waits with a frozen clock or real signals, plus a repo-wide ratchet that blocks new long waits (pages#2113, #2168, #2228).</li><li>Specs and docs: 72 spec / docs PRs, plus 16 automatic Velo mirror refreshes.</li></ul></section><footer>Source: PRs merged 16–22 Nov 2026 in the Velo back-end and Custom Element front-end repos, plus release batches 209–230. Back-end changes go live with a release batch; dashboard pages go live when merged. Descriptions were written from PR titles and bodies; the PR is the authority where wording differs. Pages for the school, trust, parent, student and enrolment dashboards reach users through the back end’s bundled copy, so they count as live once a batch containing that copy is released.</footer></div></body></html>
