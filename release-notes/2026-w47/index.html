@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Release Notes W47</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"><style>
+:root{--bg:#f7f5fb;--fg:#231b33;--muted:#6b6180;--line:#dcd6ea;--card:#ffffff;--accent:#5b2d8e;--accent-soft:#eee7f7;--ok:#1f7a4d;--ok-soft:#e3f3ea;--wait:#9a5a00;--wait-soft:#fff1dc;--code:#f0ecf7;
+--display:"Fraunces",Georgia,serif;--body:"Source Sans 3",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17121f;--fg:#ece7f5;--muted:#a79dbb;--line:#352c47;--card:#211a2d;--accent:#c9a8f0;--accent-soft:#2d2240;--ok:#7fd3a3;--ok-soft:#1d3328;--wait:#f0b35c;--wait-soft:#3a2a12;--code:#2a2238;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17121f;--fg:#ece7f5;--muted:#a79dbb;--line:#352c47;--card:#211a2d;--accent:#c9a8f0;--accent-soft:#2d2240;--ok:#7fd3a3;--ok-soft:#1d3328;--wait:#f0b35c;--wait-soft:#3a2a12;--code:#2a2238;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.12;margin:6px 0 8px;text-wrap:balance}
+p.lead{color:var(--muted);margin:0 0 20px;max-width:62ch}
+nav.top{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+nav.top a{font-size:14px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;background:var(--card)}
+nav.top a[aria-current]{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.top a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 28px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0;text-decoration:none;color:inherit;display:block}
+.tile b{display:block;font-family:var(--display);font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:var(--muted)}
+a.tile:hover{border-color:var(--accent)}
+h2{font-family:var(--display);font-size:26px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .n{font-family:var(--mono);font-size:14px;color:var(--accent);background:var(--accent-soft);padding:2px 8px;border-radius:6px}
+p.sub{color:var(--muted);margin:0 0 18px;max-width:65ch}
+h3{font-size:15px;font-weight:700;margin:24px 0 8px;display:flex;align-items:center;gap:8px}
+h3 .cnt{font-family:var(--mono);font-size:12px;color:var(--muted)}
+ul.items{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.items li{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;min-width:0}
+ul.items.bugs li{border-left-color:var(--ok)}
+li .t{font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+li p{margin:4px 0 8px;max-width:70ch}
+li .m{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+code{font-family:var(--mono);font-size:12px;background:var(--code);padding:1px 6px;border-radius:4px}
+.tag{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px}
+.tag.wait{background:var(--wait-soft);color:var(--wait)}
+.tag.live{background:var(--ok-soft);color:var(--ok)}
+.batches{display:grid;gap:6px;font-family:var(--mono);font-size:13px;margin:0 0 10px}
+.batches div{display:flex;gap:12px;flex-wrap:wrap}
+.batches .st{color:var(--ok)} .batches .st.w{color:var(--wait)}
+ul.plain{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+ul.plain li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+section{margin:0 0 36px}
+footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px;max-width:70ch}
+.tldr{background:var(--accent-soft);border-radius:10px;padding:14px 18px;margin:0 0 24px}
+.tldr h2{font-size:18px;margin:0 0 6px}
+.tldr ul{margin:0;padding-left:18px}
+</style></head><body><div class="wrap"><div class="kicker">Purple Ruler · Release notes · 16–22 Nov 2026</div><h1>What shipped last week</h1><p class="lead">16–22 November 2026. Written from the user’s side: who sees what, on which page. Use the tabs for the full lists.</p><nav class="top" aria-label="Pages"><a href="index.html" aria-current="page">Overview</a><a href="features.html">New features</a><a href="bugs.html">Bug fixes</a><a href="internal.html">Under the hood</a></nav><div class="tldr"><h2>In short</h2><ul>
+<li>Extend now covers more of what schools actually renew: every A, C and E row has a coloured Extend button, Blueprint / Distinction groups are priced from their current members, and pupil-type renewals ask for what is missing and for contact details.</li>
+<li>Add support works from the Suggested support card (including Evolve), and schools can remove a single pupil from a group directly, with a “Leaving” marker in group lists.</li>
+<li>Billing &amp; Credits has a new school page (one row per course, weekly credits for early leavers), a payer account card, and schools now see only tickets raised from the school dashboard.</li>
+<li>Trust Overview gains a pupils table with Extend and a Latest welfare calls card; the long-standing missing Assign pupils button for trust admins is fixed.</li>
+<li>Call Centre: pupil search when adding a card, another-contact on manual cards, data colouring. Staff with a purpleruler.com login now land on the routing page.</li>
+<li>21 back-end releases (batches 209–230); the big back-end theme of the week was the daily billing run, split into segments and moved towards school-by-school batches (still shadow-only).</li></ul></div><div class="tiles"><a class="tile" href="features.html"><b>26</b><span>New features</span></a><a class="tile" href="bugs.html"><b>16</b><span>Bug fixes</span></a><a class="tile" href="internal.html"><b>276</b><span>Under-the-hood changes</span></a><div class="tile"><b>21</b><span>Back-end releases (batches 209–230)</span></div></div><section><h2>Releases</h2><p class="sub">The back end ships as a whole from main, one batch per row, after QE sign-off. Times are when each successful publish run finished.</p><div class="batches"><div><span>Batch 209</span><span>2026-11-16 10:19 Z</span><span class="st">Released</span></div><div><span>Batch 210</span><span>2026-11-16 15:38 Z</span><span class="st">Released</span></div><div><span>Batch 211</span><span>2026-11-17 13:34 Z</span><span class="st">Released</span></div><div><span>Batch 212</span><span>2026-11-17 17:05 Z</span><span class="st">Released</span></div><div><span>Batch 213</span><span>2026-11-18 07:32 Z</span><span class="st">Released</span></div><div><span>Batch 214</span><span>2026-11-19 11:21 Z</span><span class="st">Released</span></div><div><span>Batch 215</span><span>2026-11-19 12:59 Z</span><span class="st">Released</span></div><div><span>Batch 216</span><span>2026-11-19 14:42 Z</span><span class="st">Released</span></div><div><span>Batch 217</span><span>2026-11-19 15:49 Z</span><span class="st">Released</span></div><div><span>Batch 218</span><span>2026-11-19 17:28 Z</span><span class="st">Released</span></div><div><span>Batch 219</span><span>2026-11-19 21:59 Z</span><span class="st">Released</span></div><div><span>Batch 220</span><span>2026-11-20 09:00 Z</span><span class="st">Released</span></div><div><span>Batch 221</span><span>2026-11-20 13:44 Z</span><span class="st">Released</span></div><div><span>Batch 222</span><span>2026-11-20 17:38 Z</span><span class="st">Released</span></div><div><span>Batch 223</span><span>2026-11-20 21:01 Z</span><span class="st">Released</span></div><div><span>Batch 224</span><span>2026-11-20 21:37 Z</span><span class="st">Released</span></div><div><span>Batch 225</span><span>2026-11-21 09:28 Z</span><span class="st">Released</span></div><div><span>Batch 227</span><span>2026-11-21 16:35 Z</span><span class="st">Released</span></div><div><span>Batch 228</span><span>2026-11-21 20:43 Z</span><span class="st">Released</span></div><div><span>Batch 229</span><span>2026-11-22 08:08 Z</span><span class="st">Released</span></div><div><span>Batch 230</span><span>2026-11-22 10:54 Z</span><span class="st">Released</span></div></div></section><footer>Source: PRs merged 16–22 Nov 2026 in the Velo back-end and Custom Element front-end repos, plus release batches 209–230. Back-end changes go live with a release batch; dashboard pages go live when merged. Descriptions were written from PR titles and bodies; the PR is the authority where wording differs. Pages for the school, trust, parent, student and enrolment dashboards reach users through the back end’s bundled copy, so they count as live once a batch containing that copy is released.</footer></div></body></html>
